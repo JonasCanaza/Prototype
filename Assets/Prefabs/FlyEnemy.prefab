@@ -153,3 +153,8 @@ MonoBehaviour:
   layerArrow:
     serializedVersion: 2
     m_Bits: 32768
+  stunDuration: 3
+  layerBooger:
+    serializedVersion: 2
+    m_Bits: 65536
+  isActive: 1

@@ -20,6 +20,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Arrow arrowPrefab;
     [SerializeField] private Transform arrowSpawnPoint;
 
+    [Header("Booger")]
+    [SerializeField] private Booger boogerPrefab;
+    [SerializeField] private Transform boogerSpawnPoint;
+
     private Vector2 directionInput;
     private Rigidbody2D rb;
     private bool isDashing = false;
@@ -71,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            //Debug.Log("Change Arroy Type!");
+            ShootBooger();
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -184,6 +188,13 @@ public class PlayerMovement : MonoBehaviour
     private void ShootArrow()
     {
         Arrow arrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, Quaternion.identity);
+
+        arrow.Initialize(transform.right);
+    }
+
+    private void ShootBooger()
+    {
+        Booger arrow = Instantiate(boogerPrefab, boogerSpawnPoint.position, Quaternion.identity);
 
         arrow.Initialize(transform.right);
     }

@@ -186,6 +186,8 @@ MonoBehaviour:
     m_Bits: 4096
   arrowPrefab: {fileID: 6068646915559339694, guid: fec7adbd3252fb14fbb9cc96bcdeb9a0, type: 3}
   arrowSpawnPoint: {fileID: 603819622765857951}
+  boogerPrefab: {fileID: 180180593486803284, guid: 34a0379b51e781845b236454d4694b45, type: 3}
+  boogerSpawnPoint: {fileID: 603819622765857951}
 --- !u!50 &8403997317356544175
 Rigidbody2D:
   serializedVersion: 5

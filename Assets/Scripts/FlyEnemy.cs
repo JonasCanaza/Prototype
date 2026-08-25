@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent (typeof(CircleCollider2D))]
@@ -23,6 +24,15 @@ public class FlyEnemy : MonoBehaviour
     [SerializeField] private int life = 3;
     [SerializeField] private LayerMask layerArrow;
 
+    [Header("Stun")]
+    [SerializeField] private float stunDuration = 3.0f;
+    [SerializeField] private LayerMask layerBooger;
+
+    private bool isStunned;
+    private Coroutine stunCoroutine;
+
+    [SerializeField] private bool isActive = true;
+
     private void Start()
     {
         // Si es perseguidora, busca al jugador automáticamente al arrancar
@@ -38,6 +48,11 @@ public class FlyEnemy : MonoBehaviour
 
     private void Update()
     {
+        if (isStunned || !isActive)
+        {
+            return;
+        }
+
         if (tipoMosca == FlyType.Patrullera)
         {
             Patrullar();
@@ -95,6 +110,19 @@ public class FlyEnemy : MonoBehaviour
                 Morir();
             }
         }
+
+        // Booger
+        if (((1 << collision.gameObject.layer) & layerBooger) != 0)
+        {
+            Debug.Log("Mosca detenida por el Booger");
+
+            if (stunCoroutine != null)
+            {
+                StopCoroutine(stunCoroutine);
+            }
+
+            stunCoroutine = StartCoroutine(Stun());
+        }
     }
 
     // Este método es PÚBLICO para que la Flecha o la Lengua puedan llamarlo al impactar
@@ -113,5 +141,25 @@ public class FlyEnemy : MonoBehaviour
 
         // Destruimos la mosca
         Destroy(gameObject);
+    }
+
+    private IEnumerator Stun()
+    {
+        isStunned = true;
+
+        yield return new WaitForSeconds(stunDuration);
+
+        isStunned = false;
+        stunCoroutine = null;
+    }
+
+    public void Activate()
+    {
+        isActive = true;
+    }
+
+    public void Deactivate()
+    {
+        isActive = false;
     }
 }
