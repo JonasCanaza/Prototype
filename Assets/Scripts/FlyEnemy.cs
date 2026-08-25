@@ -19,6 +19,10 @@ public class FlyEnemy : MonoBehaviour
     [Header("Solo para Mosca Perseguidora")]
     private Transform player;
 
+    [Header("Vida del enemigo")]
+    [SerializeField] private int life = 3;
+    [SerializeField] private LayerMask layerArrow;
+
     private void Start()
     {
         // Si es perseguidora, busca al jugador automáticamente al arrancar
@@ -79,6 +83,17 @@ public class FlyEnemy : MonoBehaviour
         {
             Debug.Log("La mosca tocó al jugador: -1 HP");
             collision.GetComponent<PlayerHealth>().RecibirDanio(1);
+        }
+
+        if (((1 << collision.gameObject.layer) & layerArrow) != 0)
+        {
+            Debug.Log("Colision con la flecha");
+            life--;
+
+            if (life <= 0)
+            {
+                Morir();
+            }
         }
     }
 

@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 8403997317356544175}
   - component: {fileID: 9103747255203918776}
   - component: {fileID: 7275027419625244877}
+  - component: {fileID: 1988823760597908685}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -183,6 +184,8 @@ MonoBehaviour:
   hazardsLayer:
     serializedVersion: 2
     m_Bits: 4096
+  arrowPrefab: {fileID: 6068646915559339694, guid: fec7adbd3252fb14fbb9cc96bcdeb9a0, type: 3}
+  arrowSpawnPoint: {fileID: 603819622765857951}
 --- !u!50 &8403997317356544175
 Rigidbody2D:
   serializedVersion: 5
@@ -353,6 +356,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1988823760597908685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828505040397964040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b16967718c210234cbf6612210d5ac3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 3
+  tiempoInvulnerable: 1.5
 --- !u!1 &7607807694375028166
 GameObject:
   m_ObjectHideFlags: 0

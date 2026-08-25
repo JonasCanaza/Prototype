@@ -16,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask grappleLayer;
     [SerializeField] private LayerMask hazardsLayer;
 
+    [Header("Arrow")]
+    [SerializeField] private Arrow arrowPrefab;
+    [SerializeField] private Transform arrowSpawnPoint;
+
     private Vector2 directionInput;
     private Rigidbody2D rb;
     private bool isDashing = false;
@@ -62,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            //Debug.Log("Shoot Arrow!");
+            ShootArrow();
         }
 
         if (Input.GetKeyDown(KeyCode.C))
@@ -175,5 +179,12 @@ public class PlayerMovement : MonoBehaviour
         // Tongue current aim
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.right * tongueRange);
+    }
+
+    private void ShootArrow()
+    {
+        Arrow arrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, Quaternion.identity);
+
+        arrow.Initialize(transform.right);
     }
 }
