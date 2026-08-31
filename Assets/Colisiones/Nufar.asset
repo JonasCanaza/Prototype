@@ -10,22 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: Grass
+  m_Name: Nufar
   m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.RuleTile
-  m_DefaultSprite: {fileID: 7932798033344189819, guid: 77badcb07c45cae4e8e5336a450bf1ba, type: 3}
+  m_DefaultSprite: {fileID: -1051250781, guid: c48a0fa167edcbe42b206d1ab1684688, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 0
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: 218737866, guid: c48a0fa167edcbe42b206d1ab1684688, type: 3}
-    - {fileID: -184084297, guid: c48a0fa167edcbe42b206d1ab1684688, type: 3}
-    - {fileID: 2093277417, guid: c48a0fa167edcbe42b206d1ab1684688, type: 3}
+    - {fileID: -1051250781, guid: c48a0fa167edcbe42b206d1ab1684688, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
-    m_Output: 1
+    m_Output: 0
     m_ColliderType: 0
     m_RandomTransform: 0
     m_Scroll: {x: 0, y: 0}

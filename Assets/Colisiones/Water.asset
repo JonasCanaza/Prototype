@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: TierraCoso
+  m_Name: Water
   m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.RuleTile
   m_DefaultSprite: {fileID: -5130686204486642245, guid: 4bd4b317c2a160f48996565b1e9f7950, type: 3}
   m_DefaultGameObject: {fileID: 0}
@@ -18,10 +18,10 @@ MonoBehaviour:
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: -5130686204486642245, guid: 4bd4b317c2a160f48996565b1e9f7950, type: 3}
-    - {fileID: 4531421633079013050, guid: 3d59ff3a7d0be5740aac1c00053fe10a, type: 3}
-    - {fileID: -2670581200746741910, guid: 37100a99c9418c543a187c79b3d8d6fc, type: 3}
-    - {fileID: -4071774360054307419, guid: 73bc3d784f36bf747a462b585f48796e, type: 3}
+    - {fileID: 21300000, guid: 4bd4b317c2a160f48996565b1e9f7950, type: 3}
+    - {fileID: 21300000, guid: 3d59ff3a7d0be5740aac1c00053fe10a, type: 3}
+    - {fileID: 21300000, guid: 37100a99c9418c543a187c79b3d8d6fc, type: 3}
+    - {fileID: 21300000, guid: 73bc3d784f36bf747a462b585f48796e, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 5
     m_MaxAnimationSpeed: 5
