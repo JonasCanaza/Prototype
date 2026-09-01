@@ -7,9 +7,11 @@ public class Arrow : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 direction;
+    private bool isIdle = false;
 
     [SerializeField] private LayerMask enemigo;
     [SerializeField] private LayerMask pared;
+    [SerializeField] private LayerMask jugador;
 
     private void Awake()
     {
@@ -39,6 +41,13 @@ public class Arrow : MonoBehaviour
             BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
 
             boxCollider.isTrigger = true;
+
+            isIdle = true;
+        }
+
+        if ((((1 << collision.gameObject.layer) & jugador) != 0) && isIdle)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -54,6 +63,13 @@ public class Arrow : MonoBehaviour
             BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
 
             boxCollider.isTrigger = true;
+
+            isIdle = true;
+        }
+
+        if ((((1 << collision.gameObject.layer) & jugador) != 0) && isIdle)
+        {
+            Destroy(gameObject);
         }
     }
 }
