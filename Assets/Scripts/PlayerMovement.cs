@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashSpeed = 15.0f;
     [SerializeField] private LayerMask grappleLayer;
     [SerializeField] private LayerMask hazardsLayer;
+    [SerializeField] private LayerMask grabbableLayer;
 
     [Header("Arrow")]
     [SerializeField] private Arrow arrowPrefab;
@@ -143,14 +144,30 @@ public class PlayerMovement : MonoBehaviour
     private void ShootTongue()
     {
         Vector2 facingDirection = transform.right;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, facingDirection, tongueRange, grappleLayer);
+
+        // Combinamos ambas layers en un solo raycast
+        LayerMask combinedMask = grappleLayer | grabbableLayer;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, facingDirection, tongueRange, combinedMask);
 
         if (hit.collider != null)
         {
-            Debug.Log("Tongue hit: " + hit.collider.name);
-            StartCoroutine(DashToTarget(hit.point));
             AudioSource audioAux = GetComponent<AudioSource>();
-            audioAux.Play();
+            if (audioAux != null) audioAux.Play();
+
+            GrabbableItem grabbable = hit.collider.GetComponent<GrabbableItem>();
+
+            if (grabbable != null)
+            {
+                // Es un objeto recolectable: lo atraemos hacia el jugador
+                Debug.Log("Tongue grabbed item: " + hit.collider.name);
+                grabbable.Grab(transform);
+            }
+            else
+            {
+                // Es un punto de grapple normal: el jugador dashea hacia él
+                Debug.Log("Tongue hit: " + hit.collider.name);
+                StartCoroutine(DashToTarget(hit.point));
+            }
         }
         else
         {
