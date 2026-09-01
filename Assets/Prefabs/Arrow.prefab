@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f47c5319b405b9a4cbec62aa7ddad65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabbableItem
-  attractionSpeed: 15
+  attractionSpeed: 30
 --- !u!1 &5774089277761013477
 GameObject:
   m_ObjectHideFlags: 0
