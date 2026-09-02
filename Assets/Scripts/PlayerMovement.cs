@@ -154,11 +154,19 @@ public class PlayerMovement : MonoBehaviour
             AudioSource audioAux = GetComponent<AudioSource>();
             if (audioAux != null) audioAux.Play();
 
+            // Chequeamos qué tipo de objeto golpeamos en orden de prioridad
+            EnemyShield shield = hit.collider.GetComponent<EnemyShield>();
             GrabbableItem grabbable = hit.collider.GetComponent<GrabbableItem>();
 
-            if (grabbable != null)
+            if (shield != null)
             {
-                // Es un objeto recolectable: lo atraemos hacia el jugador
+                // Es un escudo: lo arrancamos y lo traemos hacia el jugador
+                Debug.Log("Tongue grabbed shield: " + hit.collider.name);
+                StartCoroutine(PullShieldToPlayer(shield));
+            }
+            else if (grabbable != null)
+            {
+                // Es un objeto recolectable de tu compañero
                 Debug.Log("Tongue grabbed item: " + hit.collider.name);
                 grabbable.Grab(transform);
             }
@@ -173,6 +181,31 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Tongue didn't hit anything");
         }
+    }
+
+    private IEnumerator PullShieldToPlayer(EnemyShield shield)
+    {
+        // Reutilizamos isDashing para que el jugador se quede quieto mientras tira con la lengua
+        isDashing = true;
+        rb.linearVelocity = Vector2.zero;
+
+        Transform shieldTransform = shield.transform;
+
+        // Mientras el escudo exista y no haya llegado a la rana
+        while (shieldTransform != null && Vector2.Distance(shieldTransform.position, transform.position) > 0.5f)
+        {
+            // Movemos físicamente el escudo hacia nosotros (reutilizo dashSpeed)
+            shieldTransform.position = Vector2.MoveTowards(shieldTransform.position, transform.position, dashSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        if (shield != null)
+        {
+            shield.ArrancarEscudo();
+        }
+
+        // Le devolvemos el control al jugador
+        isDashing = false;
     }
 
     private IEnumerator DashToTarget(Vector2 target)
