@@ -128,6 +128,18 @@ public class FlyEnemy : MonoBehaviour
     // Este método es PÚBLICO para que la Flecha o la Lengua puedan llamarlo al impactar
     public void RecibirAtaque()
     {
+        // Buscamos si el enemigo tiene un hijo con el script EnemyShield
+        EnemyShield escudo = GetComponentInChildren<EnemyShield>();
+
+        // Si tiene un escudo y su collider está activo, bloqueamos el daño
+        if (escudo != null && escudo.GetComponent<Collider2D>().enabled)
+        {
+            Debug.Log("El enemigo bloqueó el ataque con su escudo");
+            escudo.RecibirAtaque();
+            return; // Cortamos acá para que no muera
+        }
+
+        // Si no tiene escudo (o se lo arrancaron), muere normalmente
         Morir();
     }
 
